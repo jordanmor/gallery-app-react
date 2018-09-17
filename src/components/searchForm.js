@@ -5,13 +5,23 @@ class SearchForm extends Component {
     searchText: ''
   }
 
+  onSearchChange = e => 
+  this.setState({ searchText: e.target.value });
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSearch(this.state.searchText);
+    e.currentTarget.reset();
+  }
+
   render() { 
     return ( 
-      <form className="search-form">
+      <form className="search-form" onSubmit={this.handleSubmit}>
         <input 
           type="search" 
           placeholder="Search..." 
           name="search" 
+          onChange={this.onSearchChange}
         />
         <button type="submit" className="search-button">
           <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">

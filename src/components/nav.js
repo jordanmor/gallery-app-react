@@ -4,9 +4,9 @@ const Nav = () => {
   return ( 
     <nav className="main-nav">
       <ul>
-        <li><a href="http://" target="_blank" rel="noopener noreferrer">Topic 1</a></li>
-        <li><a href="http://" target="_blank" rel="noopener noreferrer">Topic 2</a></li>
-        <li><a href="http://" target="_blank" rel="noopener noreferrer">Topic 3</a></li>
+        <li><a href="#">Topic 1</a></li>
+        <li><a href="#">Topic 2</a></li>
+        <li><a href="#">Topic 3</a></li>
       </ul>
     </nav>
    );

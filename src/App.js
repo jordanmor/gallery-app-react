@@ -9,10 +9,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.search();
+    this.performSearch();
   }
 
-  search = (tag = 'leaves') => {
+  performSearch = (tag = 'orange leaves') => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => res.json())
       .then(data => {
@@ -24,9 +24,10 @@ class App extends Component {
 
   render() {
     const { images } = this.state;
+
     return (
       <div className="container">
-        <Header />
+        <Header onSearch={this.performSearch} />
         <Gallery images={images} />
       </div>
     );
