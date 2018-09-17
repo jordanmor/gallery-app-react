@@ -93,6 +93,21 @@ input {
   width: 100%;
 }
 
+.icon-gif {
+  font-size: 6em;
+  margin-bottom: 0;
+  color: #7bcbc4;
+  display: block;
+}
+
+.no-gifs  {
+  color: #7bcbc4;
+  height: 140px;
+  padding-top: 62px;
+  text-align: center;
+  font-size: 1.25em;
+}
+
 @media only screen and (max-width: 767px)  {
   body {
     padding-top: 2em;
