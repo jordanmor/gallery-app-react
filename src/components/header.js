@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Nav from './nav';
 import SearchForm from './searchForm';
 
@@ -8,7 +9,7 @@ const Header = props => {
 
   return ( 
     <header>
-      <h1>Image Gallery</h1>
+      <h1 className="title"><Link to="/">Image Gallery</Link></h1>
       {props.searchDisplayed && <SearchForm onPushHistory={props.onPushHistory} onSearch={props.onSearch}/> }
       <Nav topics={props.topics} displayLink={displayLink} />
     </header>
