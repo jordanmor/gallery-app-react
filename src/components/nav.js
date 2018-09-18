@@ -1,12 +1,22 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = ({ topics }) => {
   return ( 
     <nav className="main-nav">
       <ul>
-        <li><a href="#">Topic 1</a></li>
-        <li><a href="#">Topic 2</a></li>
-        <li><a href="#">Topic 3</a></li>
+        {topics.map(topic => {
+          const btnText = topic.tag.substring(0, 1).toUpperCase() + topic.tag.substring(1);
+          return (
+            <li key={topic.tag}>
+              <NavLink to={`/${topic.tag}`}>{btnText}</NavLink>
+            </li>
+            );
+          })
+        }
+        <li>
+          <NavLink to='/search'>Search</NavLink>
+        </li>
       </ul>
     </nav>
    );

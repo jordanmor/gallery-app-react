@@ -6,8 +6,8 @@ const Header = props => {
   return ( 
     <header>
       <h1>Image Gallery</h1>
-      <SearchForm onSearch={props.onSearch} />
-      <Nav />
+      {props.search && <SearchForm onPushHistory={props.onPushHistory} onSearch={props.onSearch}/> }
+      <Nav topics={props.topics} />
     </header>
    );
 }
