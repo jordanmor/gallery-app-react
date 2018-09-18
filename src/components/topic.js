@@ -6,11 +6,12 @@ const Topic = ({ match, topics }) => {
 
   const { topic: currentTag } = match.params;
   const currentTopic = topics.find(topic => topic.tag === currentTag);
+  const title = currentTopic.tag;
 
   return ( 
     <React.Fragment>
       <Header topics={topics} search={false} />
-      <Gallery images={currentTopic.images} />
+      <Gallery images={currentTopic.images} title={title} />
     </React.Fragment>
    );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import GalleryItem from './galleryItem';
 
-const Gallery = ({ images }) => {
+const Gallery = ({ images, title }) => {
 
   if (!images.length) {
     return (
@@ -15,7 +15,7 @@ const Gallery = ({ images }) => {
 
   return (
     <div className="photo-container">
-      <h2>Results</h2>
+      <h2>{title}</h2>
       <GalleryItem images={images} />
     </div>
    );

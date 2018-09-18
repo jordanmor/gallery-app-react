@@ -5,13 +5,13 @@ import SearchForm from './searchForm';
 
 const Header = props => {
 
-  const displayLink = !props.searchDisplayed;
+  const displaySearchLink = !props.searchDisplayed;
 
   return ( 
     <header>
       <h1 className="title"><Link to="/">Image Gallery</Link></h1>
       {props.searchDisplayed && <SearchForm onPushHistory={props.onPushHistory} onSearch={props.onSearch}/> }
-      <Nav topics={props.topics} displayLink={displayLink} />
+      <Nav topics={props.topics} displaySearchLink={displaySearchLink} />
     </header>
    );
 }

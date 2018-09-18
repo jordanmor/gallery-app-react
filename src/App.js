@@ -15,6 +15,7 @@ class App extends Component {
         {tag: "persimmon", images: []},
         {tag: "oranges", images: []}
       ],
+      defaultTag: 'orange leaves',
       loading: true
   }
 
@@ -23,14 +24,15 @@ class App extends Component {
     this.loadTopics();
   }
 
-  performSearch = (tag = 'orange leaves') => {
+  performSearch = (tag = this.state.defaultTag) => {
     this.setState({ loading: true });
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           images: data.photos.photo,
-          loading: false
+          loading: false,
+          defaultTag: tag
         });
       });
   }
@@ -47,7 +49,7 @@ class App extends Component {
   }
 
   render() {
-    const { images, topics } = this.state;
+    const { images, topics, defaultTag } = this.state;
 
     return (
       <BrowserRouter>
@@ -88,7 +90,8 @@ class App extends Component {
               render={props => 
                 <Home {...props} 
                   topics={topics} 
-                  images={images} 
+                  images={images}
+                  title={defaultTag}
                 /> 
               } 
             />
