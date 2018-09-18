@@ -36,7 +36,6 @@ class App extends Component {
   }
 
   loadTopics() {
-
     const tags = this.state.topics.map(async topic => {
       const { tag } = topic;
       const photos = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
@@ -54,10 +53,46 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <Switch>
-            <Route exact path="/search" render={props => <Search {...props} topics={topics} onSearch={this.performSearch}/> } />
-            <Route path="/search/:query" render={props => <Search {...props} topics={topics} images={images} onSearch={this.performSearch}/> } />
-            <Route path="/:topic" render={props => <Topic {...props} topics={topics} /> } />
-            <Route exact path="/" render={props => <Home {...props} topics={topics} images={images} /> } />
+
+            <Route 
+              exact path="/search" 
+              render={props => 
+                <Search {...props} 
+                  topics={topics} 
+                  onSearch={this.performSearch}
+                />
+              } 
+            />
+
+            <Route 
+              path="/search/:query" 
+              render={props => 
+                <Search {...props} 
+                  topics={topics} images={images} 
+                  onSearch={this.performSearch}
+                /> 
+              } 
+            />
+
+            <Route 
+              path="/:topic" 
+              render={props => 
+                <Topic {...props} 
+                  topics={topics} 
+                />
+              } 
+            />
+
+            <Route 
+              exact path="/" 
+              render={props => 
+                <Home {...props} 
+                  topics={topics} 
+                  images={images} 
+                /> 
+              } 
+            />
+
           </Switch>
         </div>
       </BrowserRouter>
@@ -66,9 +101,3 @@ class App extends Component {
 }
 
 export default App;
-
-// {
-//   this.state.loading
-//   ? <Loader />
-//   : <Gallery images={images} />
-// }
