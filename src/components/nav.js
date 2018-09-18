@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Nav = ({ topics }) => {
+const Nav = ({ topics, displayLink }) => {
   return ( 
     <nav className="main-nav">
       <ul>
@@ -14,9 +14,9 @@ const Nav = ({ topics }) => {
             );
           })
         }
-        <li>
-          <NavLink to='/search'>Search</NavLink>
-        </li>
+        {
+          displayLink && <li><NavLink to='/search'>Search</NavLink></li>
+        }
       </ul>
     </nav>
    );

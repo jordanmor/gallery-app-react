@@ -9,7 +9,7 @@ const Search = ({ topics, images, onSearch, history }) => {
 
   return ( 
     <React.Fragment>
-      <Header topics={topics} search={true} onPushHistory={pushHistory} onSearch={onSearch} />
+      <Header topics={topics} searchDisplayed={true} onPushHistory={pushHistory} onSearch={onSearch} />
       {images ? <Gallery images={images} /> : null }
     </React.Fragment>
    );
