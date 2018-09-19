@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Nav from './nav';
-import SearchForm from './searchForm';
+import Nav from './Nav';
+import SearchForm from './SearchForm';
 
 const Header = props => {
 
@@ -17,7 +17,7 @@ const Header = props => {
     <header>
 
       <h1 className="title">
-        <Link to="/" onClick={defaultSearch}>Image Gallery</Link>
+        <Link to="/" onClick={defaultSearch}>My Image Gallery</Link>
       </h1>
 
       {

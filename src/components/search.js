@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './header';
-import Gallery from './gallery';
+import Header from './Header';
+import Gallery from './Gallery';
 
 const Search = props => {
 

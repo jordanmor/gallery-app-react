@@ -1,6 +1,6 @@
 import React from 'react';
-import GalleryItem from './galleryItem';
-import Loader from './loader';
+import GalleryItem from './GalleryItem';
+import Loader from './Loader';
 
 const Gallery = ({ images, title, loading }) => {
 

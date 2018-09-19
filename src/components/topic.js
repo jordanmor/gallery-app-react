@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Header from './header';
-import Gallery from './gallery';
-import NotFound from './notFound';
+import Header from './Header';
+import Gallery from './Gallery';
+import NotFound from './NotFound';
 
 const Topic = ({ match, topics }) => {
 

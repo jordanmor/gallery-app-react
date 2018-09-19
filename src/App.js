@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Topic from './components/topic';
-import Home from './components/home';
-import Search from './components/search';
-import NotFound from './components/notFound';
+import Topic from './components/Topic';
+import Home from './components/Home';
+import Search from './components/Search';
+import NotFound from './components/NotFound';
 import apiKey from './.config';
 
 class App extends Component {
@@ -12,7 +12,6 @@ class App extends Component {
       topics: [
         {tag: "pumpkins", images: []},
         {tag: "marigold", images: []},
-        {tag: "persimmon", images: []},
         {tag: "oranges", images: []}
       ],
       defaultTag: 'orange leaves',
