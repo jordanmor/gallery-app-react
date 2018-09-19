@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Topic from './components/topic';
 import Home from './components/home';
 import Search from './components/search';
+import NotFound from './components/notFound';
 import apiKey from './.config';
 
 class App extends Component {
@@ -68,7 +69,7 @@ class App extends Component {
             />
 
             <Route 
-              path="/search/:query" 
+              exact path="/search/:query" 
               render={props => 
                 <Search {...props} 
                   topics={topics} images={images} 
@@ -79,7 +80,7 @@ class App extends Component {
             />
 
             <Route 
-              path="/:topic" 
+              exact path="/topics/:topic"
               render={props => 
                 <Topic {...props} 
                   topics={topics} 
@@ -99,6 +100,7 @@ class App extends Component {
               } 
             />
 
+            <Route render={ () => <NotFound topics={topics}/> } />
           </Switch>
         </div>
       </BrowserRouter>

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './header';
 import Gallery from './gallery';
 
-const Search = ({ topics, images, onSearch, history, match , loading }) => {
+const Search = ({ topics, images, onSearch, history, match, loading }) => {
 
   const pushHistory = path =>
   history.push(path);

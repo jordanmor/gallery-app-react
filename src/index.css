@@ -98,6 +98,11 @@ input {
   width: 100%;
 }
 
+.not-found {
+  margin-top: 6rem;
+  color: #dfdfdf;
+}
+
 /* ===================================== 
    MATERIAL ICONS
 ======================================== */
@@ -115,6 +120,11 @@ input {
   padding-top: 62px;
   text-align: center;
   font-size: 1.25em;
+}
+
+.icn-error {
+  font-size: 3.2em;
+  margin-bottom: .25em;
 }
 
 /* ===================================== 

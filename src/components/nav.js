@@ -9,7 +9,7 @@ const Nav = ({ topics, displaySearchLink }) => {
           const btnText = topic.tag.substring(0, 1).toUpperCase() + topic.tag.substring(1);
           return (
             <li key={topic.tag}>
-              <NavLink to={`/${topic.tag}`}>{btnText}</NavLink>
+              <NavLink to={`/topics/${topic.tag}`}>{btnText}</NavLink>
             </li>
             );
           })
