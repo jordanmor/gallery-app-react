@@ -33,6 +33,8 @@ const Header = props => {
         displaySearchLink={displaySearchLink} 
       />
 
+      <hr />
+
     </header>
    );
 }
