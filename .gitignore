@@ -10,7 +10,7 @@
 /build
 
 #project
-.config.js
+config.js
 *.code-workspace
 
 # misc

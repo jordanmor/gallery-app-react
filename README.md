@@ -16,8 +16,8 @@ Treehouse Full Stack JavaScript Techdegree - Project 9
 1. git clone https://github.com/jordanmor/gallery-app-react.git
 
 2. npm install
-3. Create a .config.js file on the root level of your project's src directory. 
-    - In the .config.js file, set up your api key using the following format:
+3. Create a config.js file on the root level of your project's src directory. 
+    - In the config.js file, set up your api key using the following format:
 ``` 
     const apiKey = 'YOUR API KEY';
     export default apiKey;
