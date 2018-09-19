@@ -19,7 +19,14 @@ const Gallery = ({ images, title, loading }) => {
   return (
     <div className="photo-container">
       <h2>{title}</h2>
-      <GalleryItem images={images} />
+      <ul>
+        {images.map(image => 
+          <GalleryItem 
+            key={image.id} 
+            image={image} 
+          /> 
+        )}
+      </ul>
     </div>
    );
 }
