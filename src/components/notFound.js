@@ -6,7 +6,7 @@ const NotFound = props => (
   <React.Fragment>
     <Header 
       topics={props.topics} 
-      search={false} 
+      searchDisplayed={false} 
     />
     <div className="not-found">
       <i className="material-icons icn-error">error_outline</i>
