@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Topic from './components/topic';
 import Home from './components/home';
 import Search from './components/search';
-// import Loader from './components/loader';
 import apiKey from './.config';
 
 class App extends Component {
@@ -29,6 +28,7 @@ class App extends Component {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => res.json())
       .then(data => {
+        if (!data.photos.photo.length) tag = 'orange leaves';
         this.setState({
           images: data.photos.photo,
           loading: false,
@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   render() {
-    const { images, topics, defaultTag } = this.state;
+    const { images, topics, defaultTag, loading } = this.state;
 
     return (
       <BrowserRouter>
@@ -62,6 +62,7 @@ class App extends Component {
                 <Search {...props} 
                   topics={topics} 
                   onSearch={this.performSearch}
+                  loading={loading}
                 />
               } 
             />
@@ -72,6 +73,7 @@ class App extends Component {
                 <Search {...props} 
                   topics={topics} images={images} 
                   onSearch={this.performSearch}
+                  loading={loading}
                 /> 
               } 
             />
@@ -92,6 +94,7 @@ class App extends Component {
                   topics={topics} 
                   images={images}
                   title={defaultTag}
+                  loading={loading}
                 /> 
               } 
             />

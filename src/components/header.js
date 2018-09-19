@@ -7,9 +7,15 @@ const Header = props => {
 
   const displaySearchLink = !props.searchDisplayed;
 
+  const defaultSearch = () => {
+    if(props.noResults) {
+      props.onSearch();
+    }
+  }
+
   return ( 
     <header>
-      <h1 className="title"><Link to="/">Image Gallery</Link></h1>
+      <h1 className="title"><Link to="/" onClick={defaultSearch}>Image Gallery</Link></h1>
       {props.searchDisplayed && <SearchForm onPushHistory={props.onPushHistory} onSearch={props.onSearch}/> }
       <Nav topics={props.topics} displaySearchLink={displaySearchLink} />
     </header>
