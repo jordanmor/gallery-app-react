@@ -89,8 +89,8 @@ class App extends Component {
 
             <Route 
               exact path="/" 
-              render={props => 
-                <Home {...props} 
+              render={() => 
+                <Home
                   topics={topics} 
                   images={images}
                   title={defaultTag}
