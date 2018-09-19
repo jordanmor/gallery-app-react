@@ -32,6 +32,7 @@ const Header = props => {
         <SearchForm 
           onPushHistory={props.onPushHistory} 
           onSearch={props.onSearch}
+          getSearchText={props.getSearchText}
         /> 
       }
 

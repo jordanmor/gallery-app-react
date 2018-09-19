@@ -13,6 +13,7 @@ class SearchForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.getSearchText(this.state.searchText);
     this.props.onSearch(this.state.searchText);
     const path = `/search/${this.state.searchText}`;
 

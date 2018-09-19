@@ -15,6 +15,7 @@ class App extends Component {
         {tag: "oranges", images: []}
       ],
       defaultTag: 'orange leaves',
+      searchText: '',
       loading: true
   }
 
@@ -50,8 +51,12 @@ class App extends Component {
     Promise.all(tags).then(tags => this.setState({topics: tags}));
   }
 
+  getSearchText = text => {
+    this.setState({ searchText: text});
+  }
+
   render() {
-    const { images, topics, defaultTag, loading } = this.state;
+    const { images, topics, defaultTag, loading, searchText } = this.state;
 
     return (
       <BrowserRouter>
@@ -66,6 +71,7 @@ class App extends Component {
                   topics={topics} 
                   onSearch={this.performSearch}
                   loading={loading}
+                  getSearchText={this.getSearchText}
                 />
               } 
             />
@@ -78,6 +84,8 @@ class App extends Component {
                   images={images} 
                   onSearch={this.performSearch}
                   loading={loading}
+                  getSearchText={this.getSearchText}
+                  searchText={searchText}
                 /> 
               } 
             />
