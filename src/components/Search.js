@@ -5,7 +5,9 @@ import Gallery from './Gallery';
 const Search = props => {
 
   const { topics, images, onSearch, history, match, loading } = props;
+
   const title = match.params.query;
+  
   // This variable holds a boolean. True when search has no results.
   const noResults = !images || images.length === 0;
 

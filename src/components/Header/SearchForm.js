@@ -5,8 +5,11 @@ class SearchForm extends Component {
     searchText: ''
   }
 
-  onSearchChange = e => 
-  this.setState({ searchText: e.target.value });
+  onSearchChange = e => {
+    // Capture text from search input, make lowercase and update state
+    const searchText = e.target.value.toLowerCase();
+    this.setState({ searchText });
+  }
 
   handleSubmit = e => {
     e.preventDefault();

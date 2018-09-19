@@ -6,7 +6,7 @@ const Gallery = ({ images, title, loading }) => {
 
   if (loading) return <Loader />;
   
-  if (!images.length) {
+  if (images.length === 0 || !images) {
     return (
       <div className="no-gifs">
         <i className="material-icons icon-gif">sentiment_very_dissatisfied</i>
