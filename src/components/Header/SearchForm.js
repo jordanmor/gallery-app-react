@@ -12,7 +12,11 @@ class SearchForm extends Component {
     e.preventDefault();
     this.props.onSearch(this.state.searchText);
     const path = `/search/${this.state.searchText}`;
+
+    /*  New path created from search is pushed into the history object 
+    of the search component, resulting in a route that matches the search result*/
     this.props.onPushHistory(path);
+
     e.currentTarget.reset();
   }
 

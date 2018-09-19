@@ -6,9 +6,10 @@ import NotFound from './NotFound';
 
 const Topic = ({ match, topics }) => {
 
-  const { topic: currentTag } = match.params;
+  const { topic: currentTag } = match.params; // Current topic tag taken from url parameter
   const currentTopic = topics.find(topic => topic.tag === currentTag);
 
+  // 404-like error page displays when topics/:topic url does not match an existing route
   if(!currentTopic) return <Route render={ () => <NotFound topics={topics}/> } />
 
   const title = currentTopic.tag;

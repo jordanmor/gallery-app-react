@@ -20,6 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     this.performSearch();
+    // request and load the photos for the three default topics when the app first loads
     this.loadTopics();
   }
 
@@ -28,11 +29,12 @@ class App extends Component {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => res.json())
       .then(data => {
+        // if search has no results, revert to defaultTag
         if (!data.photos.photo.length) tag = 'orange leaves';
         this.setState({
           images: data.photos.photo,
           loading: false,
-          defaultTag: tag
+          defaultTag: tag // defaultTag updates to current search text
         });
       });
   }
@@ -57,9 +59,10 @@ class App extends Component {
           <Switch>
 
             <Route 
-              exact path="/search" 
+              exact path="/search"
+              // history, match and location Route props passed on to component
               render={props => 
-                <Search {...props} 
+                <Search {...props}
                   topics={topics} 
                   onSearch={this.performSearch}
                   loading={loading}
