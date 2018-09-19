@@ -7,10 +7,10 @@ const Nav = ({ topics, displaySearchLink }) => {
     <nav className="main-nav">
       <ul>
         {topics.map(topic => {
-          const btnText = topic.tag.substring(0, 1).toUpperCase() + topic.tag.substring(1);
+          const { tag } = topic;
           return (
-            <li key={topic.tag}>
-              <NavLink to={`/topics/${topic.tag}`}>{btnText}</NavLink>
+            <li key={tag}>
+              <NavLink className='tag' to={`/topics/${tag}`}>{tag}</NavLink>
             </li>
             );
           })

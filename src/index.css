@@ -31,6 +31,10 @@ hr {
   color: #438bbd;
 }
 
+.tag {
+  text-transform: capitalize; 
+}
+
 .search-form {
   max-width: 460px;
   display: flex;
