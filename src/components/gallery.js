@@ -4,9 +4,9 @@ import Loader from './loader';
 
 const Gallery = ({ images, title, loading }) => {
 
-  if (loading) {
-    return <Loader />
-  } else if (!images.length) {
+  if (loading) return <Loader />;
+  
+  if (!images.length) {
     return (
       <div className="no-gifs">
         <i className="material-icons icon-gif">sentiment_very_dissatisfied</i>

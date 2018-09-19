@@ -15,9 +15,24 @@ const Header = props => {
 
   return ( 
     <header>
-      <h1 className="title"><Link to="/" onClick={defaultSearch}>Image Gallery</Link></h1>
-      {props.searchDisplayed && <SearchForm onPushHistory={props.onPushHistory} onSearch={props.onSearch}/> }
-      <Nav topics={props.topics} displaySearchLink={displaySearchLink} />
+
+      <h1 className="title">
+        <Link to="/" onClick={defaultSearch}>Image Gallery</Link>
+      </h1>
+
+      {
+        props.searchDisplayed && 
+        <SearchForm 
+          onPushHistory={props.onPushHistory} 
+          onSearch={props.onSearch}
+        /> 
+      }
+
+      <Nav 
+        topics={props.topics} 
+        displaySearchLink={displaySearchLink} 
+      />
+
     </header>
    );
 }

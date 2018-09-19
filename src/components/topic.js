@@ -15,8 +15,14 @@ const Topic = ({ match, topics }) => {
 
   return ( 
     <React.Fragment>
-      <Header topics={topics} search={false} />
-      <Gallery images={currentTopic.images} title={title} />
+      <Header 
+        topics={topics} 
+        search={false} 
+      />
+      <Gallery 
+        images={currentTopic.images} 
+        title={title}
+      />
     </React.Fragment>
    );
 }
