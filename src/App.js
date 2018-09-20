@@ -57,14 +57,14 @@ class App extends Component {
   }
 
   loadTopics() {
-    const tags = this.state.topics.map(async topic => {
+    const topics = this.state.topics.map(async topic => {
       const { tag } = topic;
       const photos = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
         .then(res => res.json())
         .then(data => data.photos.photo);
       return {tag, images: photos};
     });
-    Promise.all(tags).then(tags => this.setState({topics: tags}));
+    Promise.all(topics).then(topics => this.setState({topics}));
   }
 
   render() {
@@ -83,7 +83,6 @@ class App extends Component {
           <Switch>
             <Route 
               path="/topics/:topic"
-              // History, match and location Route props passed on to component
               render={props => 
                 <Topic 
                   {...props}
