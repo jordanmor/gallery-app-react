@@ -25,9 +25,17 @@ class App extends Component {
     this.loadTopics();
   }
 
+  /* The purpose of this method is to allow a page refresh after a search has been completed. 
+  If the page is refreshed after a search, it uses the search parameter as the tag for the 
+  initial fetch of images. When the page loads on the home path, the default tag is used. */
   searchOnPageLoad = (tag = 'orange') => {
     const regex = /^\/search\/(.+)/;
+
+    // Current pathname retrieved using the withRouter higher order component
     const { pathname } = this.props.location;
+
+    /* If the pathname begins with a /search route, the search parameter is extracted from 
+    the pathname using a regular expression and assigned to the tag variable */
     if (regex.test(pathname)) {
       tag = pathname.match(regex)[1];
     }
@@ -75,6 +83,7 @@ class App extends Component {
           <Switch>
             <Route 
               path="/topics/:topic"
+              // History, match and location Route props passed on to component
               render={props => 
                 <Topic 
                   {...props}
@@ -112,4 +121,9 @@ class App extends Component {
   }
 }
 
+/* withRouter will pass updated match, location, and history props 
+to the wrapped component whenever it renders. It gives access to the 
+history object’s properties and the closest <Route>'s match. This is necessary
+because this component is not nested inside a <Route />, which can pass the 
+match, location, and history props to it's nested child component */
 export default withRouter(App);

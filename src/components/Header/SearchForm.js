@@ -13,12 +13,17 @@ class SearchForm extends Component {
   }
 
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.onSearch(this.state.searchText);
-    const path = `/search/${this.state.searchText}`;
+    const { searchText } = this.state; 
+    const path = `/search/${searchText}`;
     
+    e.preventDefault();
+    /* The onSearch callback is passed down via props 
+    from the main component App. It triggers the App's performSearch method */
+    this.props.onSearch(searchText);
+
     /*  New path created from search is pushed into the history object 
-    of the search component, resulting in a route that matches the search result*/
+    accessed using the withRouter higher order component. This results
+    in a route that matches the search result*/
     this.props.history.push(path);
 
     e.currentTarget.reset();
@@ -43,5 +48,10 @@ class SearchForm extends Component {
      );
   }
 }
- 
+
+/* withRouter will pass updated match, location, and history props 
+to the wrapped component whenever it renders. It gives access to the 
+history object’s properties and the closest <Route>'s match. This is necessary
+because this component is not nested inside a <Route />, which can pass the 
+match, location, and history props to it's nested child component */
 export default withRouter(SearchForm);

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Nav = ({ tags }) => {
-  // Nav links are created using the topics defined in the App.js state
+  // Nav links are created using the topics defined in the main component App's state
   return ( 
     <nav className="main-nav">
       <ul>

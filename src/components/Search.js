@@ -4,11 +4,7 @@ import Gallery from './Gallery';
 import Loader from './Loader';
 import NoResults from './NoResults';
 
-const Search = props => {
-
-  const { images, loading } = props;
-
-  const title = props.match.params.query;
+const Search = ({ images, loading, match }) => {
   
   if (loading) return <Loader />;
   
@@ -17,7 +13,7 @@ const Search = props => {
   return ( 
     <Gallery 
       images={images} 
-      title={title}
+      title={match.params.query}
     />
  );
 }
