@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Header from './Header';
 import Gallery from './Gallery';
 import NotFound from './NotFound';
 
@@ -15,16 +14,10 @@ const Topic = ({ match, topics }) => {
   const title = currentTopic.tag;
 
   return ( 
-    <React.Fragment>
-      <Header 
-        topics={topics} 
-        search={false} 
-      />
       <Gallery 
         images={currentTopic.images} 
         title={title}
       />
-    </React.Fragment>
    );
 }
  

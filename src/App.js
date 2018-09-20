@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Topic from './components/Topic';
-import Home from './components/Home';
-import Search from './components/Search';
+import Gallery from './components/Gallery';
 import NotFound from './components/NotFound';
+import Header from './components/Header';
+import Topic from './components/Topic';
 import apiKey from './config';
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
         {tag: "oranges", images: []}
       ],
       defaultTag: 'orange leaves',
-      searchText: '',
+      title: '',
       loading: true
   }
 
@@ -30,12 +30,10 @@ class App extends Component {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => res.json())
       .then(data => {
-        // If search has no results, revert to defaultTag
-        if (!data.photos.photo.length || !data.photos.photo) tag = 'orange leaves';
         this.setState({
           images: data.photos.photo,
-          loading: false,
-          defaultTag: tag // Update defaultTag to current search text
+          title: tag,
+          loading: false
         });
       });
   }
@@ -51,68 +49,50 @@ class App extends Component {
     Promise.all(tags).then(tags => this.setState({topics: tags}));
   }
 
-  getSearchText = text => {
-    this.setState({ searchText: text});
-  }
+  setTitle = title =>
+    this.setState({title});
 
   render() {
-    const { images, topics, defaultTag, loading, searchText } = this.state;
+    const { images, title, loading, topics } = this.state;
+
+    const galleryData = {images, title, loading};
+    const tags = topics.map(topic => topic.tag);
 
     return (
       <BrowserRouter>
         <div className="container">
-          <Switch>
 
+          <Header 
+            tags={tags}
+            onSearch={this.performSearch}
+            setTitle={this.setTitle}
+          />
+
+          <Switch>
             <Route 
-              exact path="/search"
-              // History, match and location Route props passed on to component
+              exact path="/topics/:topic"
               render={props => 
-                <Search {...props}
-                  topics={topics} 
-                  onSearch={this.performSearch}
+                <Topic 
+                  {...props}
+                  topics={topics}
                   loading={loading}
-                  getSearchText={this.getSearchText}
-                />
-              } 
+                />}
             />
 
             <Route 
               exact path="/search/:query" 
-              render={props => 
-                <Search {...props} 
-                  topics={topics} 
-                  images={images} 
-                  onSearch={this.performSearch}
-                  loading={loading}
-                  getSearchText={this.getSearchText}
-                  searchText={searchText}
-                /> 
-              } 
-            />
-
-            <Route 
-              exact path="/topics/:topic"
-              render={props => 
-                <Topic {...props} 
-                  topics={topics} 
-                />
-              } 
+              render={props => <Gallery {...props} {...galleryData} />}
             />
 
             <Route 
               exact path="/" 
-              render={() => 
-                <Home
-                  topics={topics} 
-                  images={images}
-                  title={defaultTag}
-                  loading={loading}
-                /> 
-              } 
+              render={() => <Gallery {...galleryData} />
+              }
             />
-
-            <Route render={ () => <NotFound topics={topics}/> } />
+            
+            <Route component={NotFound} />
           </Switch>
+
         </div>
       </BrowserRouter>
     );
