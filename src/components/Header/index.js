@@ -6,20 +6,10 @@ const Header = props => {
 
   return ( 
     <header>
-
       <h1 className="title">My Image Gallery</h1>
-
-      <SearchForm  
-        onSearch={props.onSearch}
-        setTitle={props.setTitle}
-      />
-
-      <Nav 
-        tags={props.tags} 
-      />
-
+      <SearchForm onSearch={props.onSearch} />
+      <Nav tags={props.tags} />
       <hr />
-
     </header>
    );
 }

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import Gallery from './Gallery';
 import NotFound from './NotFound';
 
-const Topic = ({ match, topics }) => {
+const Topic = ({ match, topics, loading }) => {
 
   const { topic: currentTag } = match.params; // Current topic tag taken from url parameter
   const currentTopic = topics.find(topic => topic.tag === currentTag);
@@ -17,6 +17,7 @@ const Topic = ({ match, topics }) => {
       <Gallery 
         images={currentTopic.images} 
         title={title}
+        loading={loading}
       />
    );
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Gallery from './components/Gallery';
-import NotFound from './components/NotFound';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Topic from './components/Topic';
+import Search from './components/Search';
+import Gallery from './components/Gallery';
+import NotFound from './components/NotFound';
 import apiKey from './config';
 
 class App extends Component {
@@ -12,27 +13,36 @@ class App extends Component {
       topics: [
         {tag: "pumpkins", images: []},
         {tag: "marigold", images: []},
+        {tag: "persimmon", images: []},
         {tag: "oranges", images: []}
       ],
-      defaultTag: 'orange leaves',
-      title: '',
       loading: true
   }
 
   componentDidMount() {
-    this.performSearch();
+    this.searchOnPageLoad();
     // Request and load the photos for the three default topics when the app first loads
     this.loadTopics();
   }
 
-  performSearch = (tag = this.state.defaultTag) => {
+  searchOnPageLoad = (tag = 'orange') => {
+    const regex = /^\/search\/(.+)/;
+    const { pathname } = this.props.location;
+    if (regex.test(pathname)) {
+      tag = pathname.match(regex)[1];
+    }
+
+    this.performSearch(tag);
+  }
+
+  performSearch = (tag) => {
+
     this.setState({ loading: true });
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           images: data.photos.photo,
-          title: tag,
           loading: false
         });
       });
@@ -49,28 +59,22 @@ class App extends Component {
     Promise.all(tags).then(tags => this.setState({topics: tags}));
   }
 
-  setTitle = title =>
-    this.setState({title});
-
   render() {
-    const { images, title, loading, topics } = this.state;
+    const { images, loading, topics } = this.state;
 
-    const galleryData = {images, title, loading};
     const tags = topics.map(topic => topic.tag);
 
     return (
-      <BrowserRouter>
         <div className="container">
 
           <Header 
             tags={tags}
             onSearch={this.performSearch}
-            setTitle={this.setTitle}
           />
 
           <Switch>
             <Route 
-              exact path="/topics/:topic"
+              path="/topics/:topic"
               render={props => 
                 <Topic 
                   {...props}
@@ -80,13 +84,23 @@ class App extends Component {
             />
 
             <Route 
-              exact path="/search/:query" 
-              render={props => <Gallery {...props} {...galleryData} />}
+              path="/search/:query" 
+              render={props => 
+                <Search 
+                  {...props} 
+                  images={images}
+                  loading={loading}
+                />}
             />
 
             <Route 
               exact path="/" 
-              render={() => <Gallery {...galleryData} />
+              render={props => 
+                <Gallery 
+                  {...props} 
+                  images={images}
+                  loading={loading}
+                />
               }
             />
             
@@ -94,9 +108,8 @@ class App extends Component {
           </Switch>
 
         </div>
-      </BrowserRouter>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
