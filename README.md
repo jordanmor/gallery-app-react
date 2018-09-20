@@ -11,6 +11,9 @@ Treehouse Full Stack JavaScript Techdegree - Project 9
 - Add logic to handle the search and various requirements of the project.
 - Add CSS to personalize the project.
 
+**Project Completed:** 09/20/2018  
+**Grade:** Exceeds Expectations
+
 ---
 **Installation Instructions:**
 1. git clone https://github.com/jordanmor/gallery-app-react.git
