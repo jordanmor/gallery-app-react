@@ -7,7 +7,7 @@ class SearchForm extends Component {
   }
 
   onSearchChange = e => {
-    // Capture text from search input, make lowercase and update state
+
     const searchText = e.target.value.toLowerCase();
     this.setState({ searchText });
   }
@@ -17,15 +17,8 @@ class SearchForm extends Component {
     const path = `/search/${searchText}`;
     
     e.preventDefault();
-    /* The onSearch callback is passed down via props 
-    from the main component App. It triggers the App's performSearch method */
     this.props.onSearch(searchText);
-
-    /*  New path created from search is pushed into the history object 
-    accessed using the withRouter higher order component. This results
-    in a route that matches the search result*/
     this.props.history.push(path);
-
     e.currentTarget.reset();
   }
 
