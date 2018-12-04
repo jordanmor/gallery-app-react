@@ -5,7 +5,6 @@ import Topic from './components/Topic';
 import Search from './components/Search';
 import Gallery from './components/Gallery';
 import NotFound from './components/NotFound';
-import apiKey from './config';
 
 class App extends Component {
   state = {
@@ -44,6 +43,7 @@ class App extends Component {
   }
 
   performSearch = (tag) => {
+    const apiKey = process.env.REACT_APP_FLICKR_APIKEY;
 
     this.setState({ loading: true });
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
@@ -57,6 +57,7 @@ class App extends Component {
   }
 
   loadTopics() {
+    const apiKey = process.env.REACT_APP_FLICKR_APIKEY;
     const topics = this.state.topics.map(async topic => {
       const { tag } = topic;
       const photos = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
