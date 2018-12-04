@@ -15,17 +15,17 @@ Treehouse Full Stack JavaScript Techdegree - Project 9
 **Grade:** Exceeds Expectations
 
 ---
-**Installation Instructions:**
+**Installation & Usage Instructions:**
 1. git clone https://github.com/jordanmor/gallery-app-react.git
 
 2. npm install
 3. Apply for a non-commercial API key from Flickr, if you do not already have one.
     - Note: you will need to use/create a yahoo/tumblr account to sign in to Flickr.
-4. Create a `config.js` file on the root level of your project's src directory. 
-    - In the `config.js` file, set up your api key using the following format:
+4. Create a `env.local` file in the root of the `client` folder. 
+    - Ex. `/client/env.local`
+    - Add your Flickr API key to the `env.local` file:
 ``` 
-    const apiKey = 'YOUR API KEY';
-    export default apiKey;
+    REACT_APP_FLICKR_APIKEY=YOUR_API_KEY;
 ```
 5. Run the program using the command: `npm start`
 ---
