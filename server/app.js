@@ -7,8 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
 // Serve static files from the React app
-const staticFiles = express.static(path.join(__dirname, '../../client/build'));
-// app.use(staticFiles);
+const staticFiles = express.static(path.join(__dirname, './../client/build'));
 
 app.use('/*', staticFiles);
 
