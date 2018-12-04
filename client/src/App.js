@@ -5,6 +5,7 @@ import Topic from './components/Topic';
 import Search from './components/Search';
 import Gallery from './components/Gallery';
 import NotFound from './components/NotFound';
+import axios from 'axios';
 
 class App extends Component {
   state = {
@@ -46,23 +47,22 @@ class App extends Component {
     const apiKey = process.env.REACT_APP_FLICKR_APIKEY;
 
     this.setState({ loading: true });
-    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
-      .then(res => res.json())
+    axios(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(data => {
         this.setState({
-          images: data.photos.photo,
+          images: data.data.photos.photo,
           loading: false
         });
-      });
+      })
+      .catch(err => console.log(err));
   }
 
   loadTopics() {
     const apiKey = process.env.REACT_APP_FLICKR_APIKEY;
     const topics = this.state.topics.map(async topic => {
       const { tag } = topic;
-      const photos = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
-        .then(res => res.json())
-        .then(data => data.photos.photo);
+      const photos = await axios(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
+        .then(data => data.data.photos.photo);
       return {tag, images: photos};
     });
     Promise.all(topics).then(topics => this.setState({topics}));
