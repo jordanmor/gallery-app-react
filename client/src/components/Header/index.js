@@ -6,7 +6,7 @@ const Header = ({ tags, onSearch }) => {
 
   return ( 
     <header>
-      <h1 className="title">My Image Gallery</h1>
+      <h1 className="title">React Gallery App</h1>
       <SearchForm onSearch={onSearch} />
       <Nav tags={tags} />
       <hr />
