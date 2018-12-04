@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
 // Serve static files from the React app
-const staticFiles = express.static(path.join(__dirname, '../client/build'));
+const staticFiles = express.static(path.join(__dirname, '../../client/build'));
 
 app.use('/*', staticFiles);
 
@@ -20,7 +20,6 @@ app.use((req, res) => {
 
 // global error handler
 app.use((err, req, res, next) => {
-  // console.error(err.stack);
   res.status(err.status || 500).json({
     message: err.message,
     error: {}
