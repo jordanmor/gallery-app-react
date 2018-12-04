@@ -1,17 +1,29 @@
 {
   "name": "gallery-app-react",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1"
-  },
+  "version": "1.0.0",
+  "description": "An image gallery built using React and the Flickr API",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "heroku-postbuild": "cd client && npm run build",
+    "build": "cd client && npm run build",
+    "install": "(cd server && npm install) && (cd client && npm install)",
+    "start": "concurrently \"cd server && nodemon\" \"cd client && npm start\"",
+    "start:heroku": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordanmor/gallery-app-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordanmor/gallery-app-react/issues"
+  },
+  "homepage": "https://github.com/jordanmor/gallery-app-react#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {}
 }
