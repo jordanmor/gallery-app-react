@@ -9,6 +9,14 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files from the React app
 const staticFiles = express.static(path.join(__dirname, '../../client/build'));
 
+app.use(staticFiles);
+
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to the React Gallery App API'
+  });
+});
+
 app.use('/*', staticFiles);
 
 // send 404 if no other route matched
