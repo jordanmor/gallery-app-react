@@ -47,7 +47,7 @@ class App extends Component {
     const apiKey = process.env.REACT_APP_FLICKR_APIKEY;
 
     this.setState({ loading: true });
-    axios(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
+    axios(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${tag}&sort=relevance&safe_search=1&per_page=24&format=json&nojsoncallback=1`)
       .then(data => {
         this.setState({
           images: data.data.photos.photo,
@@ -61,7 +61,7 @@ class App extends Component {
     const apiKey = process.env.REACT_APP_FLICKR_APIKEY;
     const topics = this.state.topics.map(async topic => {
       const { tag } = topic;
-      const photos = await axios(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
+      const photos = await axios(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${tag}&sort=relevance&safe_search=1&per_page=24&format=json&nojsoncallback=1`)
         .then(data => data.data.photos.photo);
       return {tag, images: photos};
     });
